@@ -5,6 +5,7 @@
   "main": "src/index.ts",
   "author": "Dmitriy Ivanov",
   "license": "MIT",
+  "homepage": "https://dmitriyivanovit.github.io/ozon-clone/",
   "private": true,
   "devDependencies": {
     "@babel/core": "^7.16.5",
