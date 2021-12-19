@@ -1,13 +1,16 @@
 import '@/style/style.scss';
 import modalCart from "@/modules/modalCart";
-import {getData, getGoods} from "@/lib/services";
+import {firebaseInit} from "@/lib/firebaseInit";
+import search from "@/modules/search";
+import loadData from "@/modules/loadData";
+import catalog from "@/modules/catalog";
+import filters from "@/modules/filters";
 
 modalCart();
 
-(
-  async () =>
-    {
-      const data = await getGoods();
-      console.log(data)
-    }
-  )();
+const database = firebaseInit();
+
+loadData(database);
+search(database);
+catalog(database);
+filters(database);

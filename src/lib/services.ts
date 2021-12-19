@@ -1,10 +1,29 @@
-import axios from "@/lib/axios";
+import {child, Database, get, ref } from "firebase/database";
+import {IGoodsData, IPriceFilter} from "@/types/firebase";
 
-const getData = (link: string) => {
-  return axios.get(link)
-    .then(res => res.data)
-    .catch(err => err);
-};
+export const getGoodsFirebase = (database: Database) => {
+  const dbRef = ref(database);
+  return get(child(dbRef, 'goods'));
+}
 
-export const getGoods = async () => await getData('/goods.json');
+export const searchFilter = (goods: IGoodsData[], value: string): IGoodsData[] => {
+  return goods.filter((item) => item.title.toLocaleLowerCase().includes(value.toLocaleLowerCase()));
+}
 
+export const catalogFilter = (goods: IGoodsData[], category: string): IGoodsData[] => {
+  return goods.filter((item) => item.category === category);
+}
+
+export const priceFilter = (goods: IGoodsData[], param: IPriceFilter): IGoodsData[] => {
+ return goods.filter((item) => {
+   if (!param.sale) {
+     if (item.price >= Number(param.min) && item.price <= Number(param.max)) {
+       return item;
+     }
+   } else {
+     if (item.price >= Number(param.min) && item.price <= Number(param.max) && item.sale === param.sale) {
+       return item;
+     }
+   }
+ })
+}

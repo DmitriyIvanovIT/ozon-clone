@@ -1,0 +1,7 @@
+{
+  "rules": {
+    "goods": {
+      ".read": true
+    }
+  }
+}
