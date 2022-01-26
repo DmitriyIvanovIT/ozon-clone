@@ -36,6 +36,7 @@
     "eslint:lint": "eslint --ext .ts,.tsx,.js,.jsx,.json .",
     "eslint:fix": "eslint --ext .ts,.tsx,.js,.jsx,.json --fix .",
     "predeploy": "yarn build",
+    "deploy:firebase": "firebase deploy",
     "deploy": "gh-pages -d build & firebase deploy"
   },
   "dependencies": {
